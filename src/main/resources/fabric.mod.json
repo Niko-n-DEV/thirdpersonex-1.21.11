@@ -3,9 +3,9 @@
 	"id": "thirdpersonex",
 	"version": "${version}",
 	"name": "ThirdPersonEx",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Adds independent camera rotation for third-person view.",
 	"authors": [
-		"Me!"
+		"_Nikon"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
@@ -16,8 +16,11 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"nd.tpe.ThirdPersonEx"
-		]
+			"nd.tpe.platform.ThirdPersonExInitializer"
+		],
+        "modmenu": [
+          "nd.tpe.integration.modmenu.ModMenuIntegration"
+        ]
 	},
 	"mixins": [
 		"thirdpersonex.mixins.json"
