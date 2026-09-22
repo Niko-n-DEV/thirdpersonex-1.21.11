@@ -1,7 +1,7 @@
 package nd.tpe.api.util;
 
 import nd.tpe.api.adapter.IPlayerAdapter;
-import net.minecraft.class_243;
+import net.minecraft.world.phys.Vec3; // class_243;
 
 public class Rotation {
     public static final Rotation ZERO = new Rotation(0.0F, 0.0F);
@@ -38,14 +38,14 @@ public class Rotation {
         return this.pitch;
     }
 
-    public class_243 asDirection() {
+    public Vec3 asDirection() {
         float f = this.pitch * ((float)Math.PI / 180F);
         float g = -this.yaw * ((float)Math.PI / 180F);
         double h = Math.cos((double)g);
         double i = Math.sin((double)g);
         double j = Math.cos((double)f);
         double k = Math.sin((double)f);
-        return new class_243(i * j, -k, h * j);
+        return new Vec3(i * j, -k, h * j);
     }
 
     public Rotation add(Rotation rotation) {

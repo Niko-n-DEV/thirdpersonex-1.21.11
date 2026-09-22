@@ -6,7 +6,7 @@ import nd.tpe.api.adapter.IPlayerAdapter;
 import nd.tpe.api.config.CustomCameraConfig;
 import nd.tpe.api.util.AngleUtils;
 import nd.tpe.api.util.Rotation;
-import net.minecraft.class_243;
+import net.minecraft.world.phys.Vec3;
 
 public class CustomCamera {
     private final CustomCameraManager manager;
@@ -15,7 +15,7 @@ public class CustomCamera {
     private float followYaw;
     private Rotation cameraRotation;
     private Rotation playerRotation;
-    private class_243 lastTickPlayerPos;
+    private Vec3 lastTickPlayerPos;
     private float targetKeyboardInputYaw;
     private float keyboardInputYaw = 0.0F;
     private Rotation mouseInput;
@@ -59,7 +59,7 @@ public class CustomCamera {
     }
 
     public void tick(TickPhase phase, IPlayerAdapter player) {
-        class_243 currentPos = player.getPosition();
+        Vec3 currentPos = player.getPosition();
         boolean mousePressed = this.client.isMousePressed();
         if (phase == TickPhase.START) {
             if (!player.isPassenger() && !this.lastTickPlayerPos.equals(currentPos)) {

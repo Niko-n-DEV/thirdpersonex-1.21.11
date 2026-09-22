@@ -2,7 +2,7 @@ package nd.tpe.api.adapter;
 
 import nd.tpe.api.util.AngleUtils;
 import nd.tpe.api.util.Rotation;
-import net.minecraft.class_243;
+import net.minecraft.world.phys.Vec3;
 
 public interface IPlayerAdapter {
     float getRotationYaw();
@@ -23,7 +23,7 @@ public interface IPlayerAdapter {
 
     void setVehicleYaw(float var1);
 
-    class_243 getPosition();
+    Vec3 getPosition();
 
     boolean isPassenger();
 

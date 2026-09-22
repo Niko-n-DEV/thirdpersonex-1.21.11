@@ -1,17 +1,17 @@
 package nd.tpe.mixin;
 
 import nd.tpe.api.adapter.MutableClientInput;
-import net.minecraft.class_241;
-import net.minecraft.class_744;
+import net.minecraft.world.phys.Vec2; // class_241;
+import net.minecraft.client.player.ClientInput; // class_744;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin({class_744.class})
+@Mixin({ClientInput.class})
 public class ClientInputMixin implements MutableClientInput {
     @Shadow
-    protected class_241 field_55868;
+    protected Vec2 moveVector;
 
-    public void betterThirdPerson$setMoveVector(class_241 vector) {
-        this.field_55868 = vector.method_35581();
+    public void betterThirdPerson$setMoveVector(Vec2 vector) {
+        this.moveVector = vector.normalized();
     }
 }

@@ -1,29 +1,31 @@
 package nd.tpe.impl;
 
 import nd.tpe.api.adapter.IPlayerAdapter;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.vehicle.VehicleEntity;
+import net.minecraft.world.entity.Entity; // class_1297
+import net.minecraft.world.entity.animal.pig.Pig; // class_1452
+import net.minecraft.world.entity.vehicle.VehicleEntity; // class_1498 - должен быть horse, но его нет.
+import net.minecraft.world.entity.player.Player; // class_1657
+import net.minecraft.world.phys.Vec3; // class_243
 
 public record PlayerAdapter(Player player) implements IPlayerAdapter {
     public float getRotationYaw() {
 
-        return this.player.method_36454();
+        return this.player.getYRot();
     }
 
     public float getRotationPitch() {
 
-        return this.player.method_36455();
+        return this.player.getXRot();
     }
 
     public float getPrevRotationYaw() {
 
-        return this.player.field_5982;
+        return this.player.yRotO;
     }
 
     public float getPrevRotationPitch() {
 
-        return this.player.field_6004;
+        return this.player.xRotO;
     }
 
     public void setRotationYaw(float value) {
@@ -33,48 +35,49 @@ public record PlayerAdapter(Player player) implements IPlayerAdapter {
 
     public void setRotationPitch(float pitch) {
 
-        this.player.method_36457(pitch);
+        this.player.setXRot(pitch);
     }
 
     public void setPrevRotationYaw(float yaw) {
 
-        this.player.field_5982 = yaw;
+        this.player.yRotO = yaw;
     }
 
     public void setPrevRotationPitch(float pitch) {
 
-        this.player.field_6004 = pitch;
+        this.player.xRotO = pitch;
     }
 
     public void setVehicleYaw(float value) {
-        this.player.field_6241 = value;
-        this.player.field_6259 = value;
-        class_1297 vehicle = this.player.method_5854();
+        this.player.yRotO = value;
+        this.player.xRotO = value;
+
+        Entity vehicle = this.player.getVehicle();
         if (vehicle != null) {
-            vehicle.method_36456(value);
-            vehicle.field_5982 = value;
+            vehicle.setYRot(value);
+            vehicle.yRotO = value;
         }
 
     }
 
     public Vec3 getPosition() {
-        return this.player.();
+        return this.player.position();
     }
 
     public boolean isPassenger() {
-        return this.player.method_5765();
+        return this.player.isPassenger();
     }
 
     public boolean isUsingItem() {
-        return this.player.method_6115();
+        return this.player.isUsingItem();
     }
 
     public boolean hasAllowedVehicle() {
-        class_1297 vehicle = this.player.method_5854();
-        return vehicle instanceof class_1498 || vehicle instanceof class_1452;
+        Entity vehicle = this.player.getVehicle();
+        return vehicle instanceof VehicleEntity || vehicle instanceof Pig;
     }
 
     public boolean isElytraFlying() {
-        return this.player.method_6128();
+        return this.player.isFallFlying();
     }
 }
