@@ -3,7 +3,7 @@ package nd.tpe.impl;
 import nd.tpe.api.adapter.IPlayerAdapter;
 import net.minecraft.world.entity.Entity; // class_1297
 import net.minecraft.world.entity.animal.pig.Pig; // class_1452
-import net.minecraft.world.entity.vehicle.VehicleEntity; // class_1498 - должен быть horse, но его нет.
+import net.minecraft.world.entity.animal.equine.Horse; // class_1498 - должен быть horse, но его нет.
 import net.minecraft.world.entity.player.Player; // class_1657
 import net.minecraft.world.phys.Vec3; // class_243
 
@@ -50,7 +50,7 @@ public record PlayerAdapter(Player player) implements IPlayerAdapter {
 
     public void setVehicleYaw(float value) {
         this.player.yRotO = value;
-        this.player.xRotO = value;
+        this.player.setYRot(value);
 
         Entity vehicle = this.player.getVehicle();
         if (vehicle != null) {
@@ -74,7 +74,7 @@ public record PlayerAdapter(Player player) implements IPlayerAdapter {
 
     public boolean hasAllowedVehicle() {
         Entity vehicle = this.player.getVehicle();
-        return vehicle instanceof VehicleEntity || vehicle instanceof Pig;
+        return vehicle instanceof Horse || vehicle instanceof Pig;
     }
 
     public boolean isElytraFlying() {
